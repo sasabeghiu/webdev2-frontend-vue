@@ -3,19 +3,28 @@
     <div class="container-fluid">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <router-link to="/" class="nav-link" active-class="active"
-            >Home</router-link
-          >
-        </li>      
-        <li class="nav-item">
-          <router-link to="/products" class="nav-link" active-class="active"
-            >Products</router-link
-          >
+          <router-link to="/" class="nav-link" active-class="active">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/login" class="nav-link" active-class="active"
-            >Login</router-link
-          >
+          <router-link to="/login" class="nav-link" active-class="active">Login</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/products" class="nav-link" active-class="active">Products</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/services" class="nav-link" active-class="active">Services</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/users" class="nav-link" active-class="active">Users</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/categories" class="nav-link" active-class="active">Categories</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/roles" class="nav-link" active-class="active">Roles</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/shoppingcarts" class="nav-link" active-class="active">Shopping Carts</router-link>
         </li>
       </ul>
     </div>
@@ -28,5 +37,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

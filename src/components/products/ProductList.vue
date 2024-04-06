@@ -2,16 +2,11 @@
   <section>
     <div class="container">
       <h2 class="mt-3 mt-lg-5">Products</h2>
-        <button type="button" class="btn btn-primary mt-3" @click="this.$router.push('/createproduct');">
-            Add product
-          </button>
+      <button type="button" class="btn btn-primary mt-3" @click="this.$router.push('/createproduct');">
+        Add product
+      </button>
       <div class="row mt-3">
-        <product-list-item
-          v-for="product in products"
-          :key="product.id"
-          :product="product"
-          @update="update"
-        />
+        <product-list-item v-for="product in products" :key="product.id" :product="product" @update="update" />
       </div>
     </div>
   </section>
@@ -19,7 +14,6 @@
 
 <script>
 import axios from "axios";
-
 import ProductListItem from "./ProductListItem.vue";
 
 export default {
@@ -49,5 +43,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
