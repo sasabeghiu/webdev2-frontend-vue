@@ -12,7 +12,8 @@
               <label for="inputPassword" class="form-label">Password</label>
               <input type="password" class="form-control" id="inputPassword" v-model="password" />
             </div>
-            <button type='button' class="btn btn-primary" @click="login()">Submit</button>
+            <button type='button' class="btn btn-primary" @click="login()" style="margin-right: 5px;">Login</button>
+            <button type='button' class="btn btn-primary" @click="register()">Register</button>
           </form>
         </div>
       </div>
@@ -42,6 +43,9 @@ export default {
           this.errorMessage = error;
         });
     },
+    register() {
+      this.$router.push("/register"); // Adjust the path as per your routing setup
+    }
   }
 };
 </script>

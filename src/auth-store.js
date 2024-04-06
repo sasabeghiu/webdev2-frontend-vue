@@ -50,5 +50,20 @@ export const useAuthStore = defineStore("authStore", {
       delete axios.defaults.headers.common["Authorization"];
       console.log("User logged out successfully.");
     },
+    register(username, password, email) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post("http://localhost/users/register", {
+            username: username,
+            password: password,
+            email: email,
+            role_id: 2,
+          })
+          .then(() => {
+            resolve();
+          })
+          .catch((err) => reject(err));
+      });
+    },
   },
 });
