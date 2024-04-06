@@ -1,20 +1,22 @@
 import axios from "axios";
+import { useAuthStore } from "./auth-store";
 
 const instance = axios.create({
   baseURL: "http://localhost/",
 });
 
-instance.interceptors.request.use(function(config) {
-  const token = localStorage.getItem("token");
-  console.log("Token from localStorage:", token); 
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  } else {
-    console.error("No token found in localStorage.");
+instance.interceptors.request.use(
+  (config) => {
+    const authStore = useAuthStore();
+    const token = authStore.token || localStorage.getItem("token");
+    if (token) {
+      config.headers["Authorization"] = "Bearer " + token;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
-  return config;
-}, function(error) {
-  return Promise.reject(error);
-});
+);
 
 export default instance;

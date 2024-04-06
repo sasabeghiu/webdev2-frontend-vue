@@ -19,12 +19,13 @@ export const useAuthStore = defineStore("authStore", {
             password: password,
           })
           .then((res) => {
-            console.log(res.data);
             this.username = res.data.username;
             this.token = res.data.jwt;
             localStorage.setItem("username", res.data.username);
             localStorage.setItem("token", res.data.jwt);
             console.log("Token stored:", localStorage.getItem("token"));
+            axios.defaults.headers.common["Authorization"] =
+              "Bearer " + res.data.jwt;
             resolve();
           })
           .catch((err) => reject(err));
@@ -40,6 +41,14 @@ export const useAuthStore = defineStore("authStore", {
       } else {
         console.error("Token not found in localStorage.");
       }
+    },
+    logout() {
+      this.username = "";
+      this.token = "";
+      localStorage.removeItem("username");
+      localStorage.removeItem("token");
+      delete axios.defaults.headers.common["Authorization"];
+      console.log("User logged out successfully.");
     },
   },
 });

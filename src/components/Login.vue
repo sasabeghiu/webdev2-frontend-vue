@@ -36,7 +36,7 @@ export default {
       const store = useAuthStore();
       store.login(this.username, this.password)
         .then(() => {
-          this.$router.replace("/products");
+          this.$router.replace("/");
         })
         .catch((error) => {
           this.errorMessage = error;
