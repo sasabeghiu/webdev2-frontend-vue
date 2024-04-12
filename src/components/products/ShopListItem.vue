@@ -1,0 +1,70 @@
+<template>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xxl-3 p-2">
+        <div class="card product-card h-100">
+            <div class="card-body">
+                <img :src="product.image" :alt="product.title" :title="product.title" />
+                <div class="float-start">
+                    <p>{{ product.name }}</p>
+                    <p><small>{{ product.category.name }}</small></p>
+                    <p><small>{{ "Quantity available: " + product.quantity_available }}</small></p>
+                    <div class="quantity-selector my-2" style="display: flex;">
+                        <button class="btn btn-sm btn-secondary" @click="decrementQuantity" :disabled="isAdded">-</button>
+                        <input type="number" v-model.number="quantity" class="form-control quantity-input w-25" :disabled="isAdded" />
+                        <button class="btn btn-sm btn-secondary" @click="incrementQuantity" :disabled="isAdded">+</button>
+                    </div>
+                </div>
+                <span class="price float-end">{{ product.price }} &euro;</span>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" @click="addToCart(product.id, quantity)" :disabled="isAdded">Add to cart</button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import axios from "axios";
+
+export default {
+    name: "ShopListItem",
+    props: {
+        product: Object,
+    },
+    data() {
+        return {
+            isAdded: false,
+            quantity: 1 
+        };
+    },
+    methods: {
+        addToCart(productId, quantity) {
+            axios
+                .post("http://localhost/cartitems/addToCart", {
+                    cart_id: 1,
+                    product_id: productId,
+                    quantity: quantity,
+                })
+                .then((result) => {
+                    console.log(result);
+                    this.isAdded = true;
+                    this.$emit("update");
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        incrementQuantity() {
+            if (this.quantity < this.product.quantity_available) {
+                this.quantity++;
+            }
+        },
+        decrementQuantity() {
+            if (this.quantity > 1) {
+                this.quantity--;
+            }
+        },
+    },
+};
+</script>
+
+<style></style>

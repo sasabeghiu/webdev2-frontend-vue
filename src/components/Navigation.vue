@@ -23,6 +23,9 @@
         <li class="nav-item">
           <router-link to="/shoppingcarts" class="nav-link" active-class="active">Shopping Carts</router-link>
         </li>
+        <li class="nav-item">
+          <router-link to="/shop" class="nav-link" active-class="active">Shop</router-link>
+        </li>
 
         <li class="nav-item" v-if="isLoggedIn">
           <button class="btn btn-outline-danger nav-link" active-class="active" @click="logout">Logout</button>
