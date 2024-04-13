@@ -23,6 +23,7 @@ export const useAuthStore = defineStore("authStore", {
             this.token = res.data.jwt;
             localStorage.setItem("username", res.data.username);
             localStorage.setItem("token", res.data.jwt);
+            localStorage.setItem("id", res.data.id);
             console.log("Token stored:", localStorage.getItem("token"));
             axios.defaults.headers.common["Authorization"] =
               "Bearer " + res.data.jwt;
@@ -34,9 +35,11 @@ export const useAuthStore = defineStore("authStore", {
     autoLogin() {
       const token = localStorage.getItem("token");
       const username = localStorage.getItem("username");
+      const id = localStorage.getItem("id");
       if (token && username) {
         this.token = token;
         this.username = username;
+        this.id = id;
         axios.defaults.headers.common["Authorization"] = "Bearer " + token;
       } else {
         console.error("Token not found in localStorage.");
@@ -57,7 +60,7 @@ export const useAuthStore = defineStore("authStore", {
             username: username,
             password: password,
             email: email,
-            role_id: 2,
+            role_id: 2, // user by default
           })
           .then(() => {
             resolve();

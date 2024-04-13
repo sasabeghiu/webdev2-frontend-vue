@@ -27,6 +27,7 @@ import EditUser from "../components/users/EditUser.vue";
 import ShoppingCartList from "../components/shoppingcarts/ShoppingCartList.vue";
 import CreateShoppingCart from "../components/shoppingcarts/CreateShoppingCart.vue";
 import EditShoppingCart from "../components/shoppingcarts/EditShoppingCart.vue";
+import CartView from "../components/shoppingcarts/CartView.vue";
 
 import ShopList from "../components/products/ShopList.vue";
 
@@ -61,6 +62,7 @@ const router = createRouter({
     { path: "/shoppingcarts", component: ShoppingCartList },
     { path: "/createshoppingcart", component: CreateShoppingCart },
     { path: "/editshoppingcart/:id", component: EditShoppingCart, props: true },
+    { path: "/shoppingcart", component: CartView },
   ],
 });
 
