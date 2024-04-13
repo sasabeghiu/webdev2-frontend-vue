@@ -7,7 +7,7 @@
             </button>
             <div class="row mt-3">
                 <cart-item v-for="cartItem in cartItems" :key="cartItem.id" :cartItem="cartItem"
-                    @update-cart="fetchCartItems" />
+                    @update-cart="fetchCartItems" @cart-item-deleted="handleItemDeletion" />
             </div>
             <button type="button" class="btn btn-success mt-3" @click="this.$router.push('/');">
                 Proceed to checkout
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { useCartStore } from '../../cart-store';
 import axios from 'axios';
 import CartItem from './CartItem.vue';
 
@@ -58,6 +59,9 @@ export default {
             } else {
                 console.error('User ID not found.');
             }
+        },
+        handleItemDeletion(itemId) {
+            this.cartItems = this.cartItems.filter(item => item.id !== itemId); // Remove item from local list
         }
     }
 

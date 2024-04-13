@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { useCartStore } from '../../cart-store';
 import axios from 'axios';
 
 export default {
@@ -43,15 +44,19 @@ export default {
         updateCartItem() {
             axios.put(`http://localhost/cartitems/${this.cartItem.id}`, { quantity: this.displayQuantity })
                 .then(() => {
-                    this.cartItem.quantity = this.displayQuantity; // Sync the quantity back to cartItem on successful update
-                    this.$emit('update-cart');
+                    this.cartItem.quantity = this.displayQuantity;
+                    const cartStore = useCartStore();
+                    cartStore.fetchItemCount();
                 })
                 .catch(error => console.error('Error updating cart item:', error));
+
         },
         deleteCartItem() {
             axios.delete(`http://localhost/cartitems/${this.cartItem.id}`)
                 .then(() => {
-                    this.$emit('update-cart');
+                    this.$emit('cart-item-deleted', this.cartItem.id);
+                    const cartStore = useCartStore();
+                    cartStore.fetchItemCount();
                 })
                 .catch(error => console.error('Error deleting cart item:', error));
         },

@@ -1,10 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import Home from "../components/Home.vue";
+import AboutUs from "../components/AboutUs.vue";
+import Contact from "../components/Contact.vue";
+
 import Login from "../components/Login.vue";
 import Register from "../components/Register.vue";
 
 import ProductList from "../components/products/ProductList.vue";
+import ProductDetails from "../components/products/ProductDetails.vue";
+import ShopList from "../components/products/ShopList.vue";
 import CreateProduct from "../components/products/CreateProduct.vue";
 import EditProduct from "../components/products/EditProduct.vue";
 
@@ -29,17 +34,19 @@ import CreateShoppingCart from "../components/shoppingcarts/CreateShoppingCart.v
 import EditShoppingCart from "../components/shoppingcarts/EditShoppingCart.vue";
 import CartView from "../components/shoppingcarts/CartView.vue";
 
-import ShopList from "../components/products/ShopList.vue";
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: "/", component: Home },
+    { path: "/aboutus", component: AboutUs },
+    { path: "/contact", component: Contact },
+
     { path: "/login", component: Login },
     { path: "/register", component: Register },
-    { path: "/shop", component: ShopList },
 
     { path: "/products", component: ProductList },
+    { path: "/shop", component: ShopList },
+    { path: "/products/:id", component: ProductDetails, props: true },
     { path: "/createproduct", component: CreateProduct },
     { path: "/editproduct/:id", component: EditProduct, props: true },
 

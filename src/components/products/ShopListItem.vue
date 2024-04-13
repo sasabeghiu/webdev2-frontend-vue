@@ -1,28 +1,31 @@
 <template>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xxl-3 p-2">
         <div class="card product-card h-100">
-            <div class="card-body">
+            <div @click="goToProductDetails(product.id)" class="card-body">
                 <img :src="product.image" :alt="product.title" :title="product.title" />
                 <div class="float-start">
                     <p>{{ product.name }}</p>
                     <p><small>{{ product.category.name }}</small></p>
                     <p><small>{{ "Quantity available: " + product.quantity_available }}</small></p>
-                    <div class="quantity-selector my-2" style="display: flex;">
-                        <button class="btn btn-sm btn-secondary" @click="decrementQuantity" :disabled="isAdded">-</button>
-                        <input type="number" v-model.number="quantity" class="form-control quantity-input w-25" :disabled="isAdded" />
-                        <button class="btn btn-sm btn-secondary" @click="incrementQuantity" :disabled="isAdded">+</button>
-                    </div>
                 </div>
                 <span class="price float-end">{{ product.price }} &euro;</span>
             </div>
+            <div class="quantity-selector my-2" style="display: flex;">
+                <button class="btn btn-sm btn-secondary" @click="decrementQuantity" :disabled="isAdded">-</button>
+                <input type="number" v-model.number="quantity" class="form-control quantity-input w-25"
+                    :disabled="isAdded" />
+                <button class="btn btn-sm btn-secondary" @click="incrementQuantity" :disabled="isAdded">+</button>
+            </div>
             <div class="card-footer">
-                <button class="btn btn-primary" @click="addToCart(product.id, quantity)" :disabled="isAdded">Add to cart</button>
+                <button class="btn btn-primary" @click="addToCart(product.id, quantity)" :disabled="isAdded">Add to
+                    cart</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { useCartStore } from "../../cart-store";
 import axios from "axios";
 
 export default {
@@ -33,7 +36,7 @@ export default {
     data() {
         return {
             isAdded: false,
-            quantity: 1 
+            quantity: 1
         };
     },
     methods: {
@@ -47,7 +50,8 @@ export default {
                 .then((result) => {
                     console.log(result);
                     this.isAdded = true;
-                    this.$emit("update");
+                    const cartStore = useCartStore();
+                    cartStore.fetchItemCount();
                 })
                 .catch((error) => {
                     console.log(error);
@@ -63,6 +67,12 @@ export default {
                 this.quantity--;
             }
         },
+        goToProductDetails(productId) {
+            this.$router.push('/products/' + productId)
+                .catch(err => {
+                    console.error('Routing error:', err);
+                });
+        }
     },
 };
 </script>
