@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../components/Home.vue";
 import AboutUs from "../components/AboutUs.vue";
 import Contact from "../components/Contact.vue";
+import Checkout from "../components/Checkout.vue";
 
 import Login from "../components/Login.vue";
 import Register from "../components/Register.vue";
@@ -70,6 +71,8 @@ const router = createRouter({
     { path: "/createshoppingcart", component: CreateShoppingCart },
     { path: "/editshoppingcart/:id", component: EditShoppingCart, props: true },
     { path: "/shoppingcart", component: CartView },
+
+    { path: "/checkout", component: Checkout, props: true },
   ],
 });
 

@@ -5,8 +5,14 @@ export const useCartStore = defineStore("cart", {
   state: () => ({
     items: [],
     itemCount: 0,
+    cartItems: [],
+    totalPrice: 0,
   }),
   actions: {
+    clearCart() {
+      this.items = [];
+      this.itemCount = 0;
+    },
     setItemCount(count) {
       this.itemCount = count;
     },
@@ -17,6 +23,12 @@ export const useCartStore = defineStore("cart", {
       if (this.itemCount > 0) {
         this.itemCount--;
       }
+    },
+    setCartItems(items) {
+      this.cartItems = items;
+    },
+    setTotalPrice(price) {
+      this.totalPrice = price;
     },
     async fetchItemCount() {
       try {
