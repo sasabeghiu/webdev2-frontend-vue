@@ -1,6 +1,5 @@
-# Vue JWT starter project
-
-This project is meant as a starting point for a lecture about adding JWT authentication and state management to a vue app
+# Web Develeopment 2 Front End
+The project is not yet fully completed.
 
 ## Project Setup
 
