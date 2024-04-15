@@ -21,6 +21,9 @@
             <span class="badge bg-primary">{{ cartItemCount }}</span>
           </router-link>
         </li>
+        <li class="nav-item" v-if="isLoggedIn">
+          <router-link to="/orders" class="nav-link" active-class="active">My Orders</router-link>
+        </li>
         <!-- Dropdown for CMS -->
         <li class="nav-item dropdown" v-if="isLoggedIn && isAdmin">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCMS" role="button" data-bs-toggle="dropdown"
