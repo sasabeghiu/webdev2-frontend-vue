@@ -89,6 +89,8 @@ export default {
                         const deleteCartResponse = await axios.delete(`http://localhost/shoppingcarts/${this.cartItems[0].cart_id}`);
                         if (deleteCartResponse.status === 204) {
                             this.cartItems = [];
+                            // this.$router.push({ name: 'OrderView', params: { orderId: orderId }});
+                            this.$router.push('/placedorder/' + orderId);
                             alert('Your order has been placed successfully and the cart has been cleared!');
                         } else {
                             console.error('Failed to clear cart:', deleteCartResponse.data);

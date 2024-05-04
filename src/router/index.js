@@ -31,9 +31,13 @@ import CreateUser from "../components/users/CreateUser.vue";
 import EditUser from "../components/users/EditUser.vue";
 
 import ShoppingCartList from "../components/shoppingcarts/ShoppingCartList.vue";
-import CreateShoppingCart from "../components/shoppingcarts/CreateShoppingCart.vue";
 import EditShoppingCart from "../components/shoppingcarts/EditShoppingCart.vue";
 import CartView from "../components/shoppingcarts/CartView.vue";
+
+import OrderView from "../components/orders/OrderView.vue";
+import UserOrders from "../components/orders/OrdersView.vue";
+import OrderList from "../components/orders/OrderList.vue";
+import EditOrder from "../components/orders/EditOrder.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -68,11 +72,15 @@ const router = createRouter({
     { path: "/edituser/:id", component: EditUser, props: true },
 
     { path: "/shoppingcarts", component: ShoppingCartList },
-    { path: "/createshoppingcart", component: CreateShoppingCart },
     { path: "/editshoppingcart/:id", component: EditShoppingCart, props: true },
     { path: "/shoppingcart", component: CartView },
 
     { path: "/checkout", component: Checkout, props: true },
+
+    { path: "/placedorder/:id", component: OrderView, props: true },
+    { path: "/orders/myorders", component: UserOrders },
+    { path: "/orders", component: OrderList },
+    { path: "/editorder/:id", component: EditOrder, props: true },
   ],
 });
 

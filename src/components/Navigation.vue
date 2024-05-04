@@ -17,12 +17,12 @@
         </li>
         <li class="nav-item" v-if="isLoggedIn">
           <router-link to="/shoppingcart" class="nav-link" active-class="active">
-            <i class="bi bi-cart-check"></i>Shopping Cart
-            <span class="badge bg-primary">{{ cartItemCount }}</span>
+            <i class="bi bi-cart-check"></i> Shopping Cart
+            <span class="badge bg-secondary">{{ cartItemCount }}</span>
           </router-link>
         </li>
         <li class="nav-item" v-if="isLoggedIn">
-          <router-link to="/orders" class="nav-link" active-class="active">My Orders</router-link>
+          <router-link to="/orders/myorders/" class="nav-link" active-class="active"><i class="bi bi-basket-fill"></i> My Orders</router-link>
         </li>
         <!-- Dropdown for CMS -->
         <li class="nav-item dropdown" v-if="isLoggedIn && isAdmin">
@@ -37,6 +37,7 @@
             <li><router-link to="/roles" class="dropdown-item text-white">Roles</router-link></li>
             <li><router-link to="/users" class="dropdown-item text-white">Users</router-link></li>
             <li><router-link to="/shoppingcarts" class="dropdown-item text-white">Shopping Carts</router-link></li>
+            <li><router-link to="/orders" class="dropdown-item text-white">Orders</router-link></li>
           </ul>
         </li>
       </ul>
