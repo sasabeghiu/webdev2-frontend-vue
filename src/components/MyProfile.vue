@@ -12,7 +12,8 @@
 
                 <div class="input-group mb-3">
                     <span class="input-group-text">Password</span>
-                    <input type="password" class="form-control" v-model="user.password" placeholder="New password" />
+                    <input type="password" class="form-control" v-model="user.password"
+                        placeholder="Enter new password" />
                 </div>
 
                 <div class="input-group mb-3">
@@ -24,7 +25,7 @@
                     <button type="button" class="btn btn-primary" @click="updateUser">
                         Save changes
                     </button>
-                    <button type="button" class="mx-2 btn btn-danger" @click="this.$router.push('/')">
+                    <button type="button" class="mx-2 btn btn-danger" @click="cancel">
                         Cancel
                     </button>
                 </div>
@@ -44,7 +45,7 @@ export default {
             user: {
                 id: 0,
                 username: '',
-                password: '',
+                password: null,  // Set default to null to check if changed
                 email: '',
                 role_id: 1,
             }
@@ -52,12 +53,26 @@ export default {
     },
     methods: {
         updateUser() {
+            let data = {
+                username: this.user.username,
+                email: this.user.email,
+                role_id: this.user.role_id,  // Assuming you want to update role_id; omit if not
+            };
+
+            // Only send password if it has been modified
+            if (this.user.password) {
+                data.password = this.user.password;
+            }
+
             axios
-                .put(`http://localhost/users/${this.user.id}`, this.user)
+                .put(`http://localhost/users/${this.user.id}`, data)
                 .then((response) => {
-                    console.log(this.user.id);
+                    console.log(response.data);
                     this.$refs.form.reset();
+                    this.user.password = null;  // Reset password field after update
                     alert('Profile updated successfully!');
+                    const authStore = useAuthStore();
+                    authStore.fetchUserDetails();  // Update store data
                 })
                 .catch((error) => {
                     console.error(error);
@@ -66,16 +81,23 @@ export default {
         },
         cancel() {
             this.$router.push('/');
-        },
+        }
     },
     mounted() {
-        axios
-            .get(`http://localhost/users/${this.user.id}`)
-            .then((response) => {
-                console.log(response);
-                this.user = response.data;
-            })
-            .catch((error) => console.log(error));
+        const authStore = useAuthStore();
+        if (authStore.isLoggedIn) {
+            this.user.id = authStore.getId;
+            this.user.username = authStore.username;
+            this.user.email = authStore.getToken;
+            this.user.role_id = authStore.isAdmin ? "1" : "2";
+            axios
+                .get(`http://localhost/users/${this.user.id}`)
+                .then((response) => {
+                    console.log(response);
+                    this.user = { ...this.user, ...response.data };
+                })
+                .catch((error) => console.log(error));
+        }
     },
 };
 </script>

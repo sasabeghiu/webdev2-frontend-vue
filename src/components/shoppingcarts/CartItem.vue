@@ -56,7 +56,8 @@ export default {
                 .then(() => {
                     this.$emit('cart-item-deleted', this.cartItem.id);
                     const cartStore = useCartStore();
-                    cartStore.fetchItemCount();
+                    cartStore.decrementItemCount();
+                    // cartStore.fetchItemCount();
                 })
                 .catch(error => console.error('Error deleting cart item:', error));
         },

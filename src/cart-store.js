@@ -21,7 +21,7 @@ export const useCartStore = defineStore("cart", {
     },
     decrementItemCount() {
       if (this.itemCount > 0) {
-        this.itemCount--;
+        this.itemCount -= 1;
       }
     },
     setCartItems(items) {

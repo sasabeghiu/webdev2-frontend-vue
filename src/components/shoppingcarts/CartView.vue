@@ -20,6 +20,7 @@
 <script>
 import axios from 'axios';
 import CartItem from './CartItem.vue';
+import { useCartStore } from '../../cart-store';
 
 export default {
     name: 'CartView',
@@ -88,6 +89,8 @@ export default {
                     if (allItemsAdded) {
                         const deleteCartResponse = await axios.delete(`http://localhost/shoppingcarts/${this.cartItems[0].cart_id}`);
                         if (deleteCartResponse.status === 204) {
+                            const cartStore = useCartStore();
+                            cartStore.clearCart();
                             this.cartItems = [];
                             // this.$router.push({ name: 'OrderView', params: { orderId: orderId }});
                             this.$router.push('/placedorder/' + orderId);

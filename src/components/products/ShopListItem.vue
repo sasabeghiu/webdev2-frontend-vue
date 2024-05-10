@@ -26,6 +26,7 @@
 
 <script>
 import { useCartStore } from "../../cart-store";
+import { useAuthStore } from '../../auth-store';
 import axios from "axios";
 
 export default {
@@ -41,6 +42,12 @@ export default {
     },
     methods: {
         addToCart(productId, quantity) {
+            const authStore = useAuthStore();
+            if (!authStore.isLoggedIn) {
+                alert("You must be logged in to add items to the cart.");
+                this.$router.push('/login');
+                return;
+            }
             axios
                 .post("http://localhost/cartitems/addToCart", {
                     cart_id: 1,
