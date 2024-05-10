@@ -24,7 +24,8 @@
                         <product-list-item v-for="product in products" :key="product.id" :product="product"
                             @update="update" />
                         <div class="col-12" v-if="products.length === 0 && wasSearched">
-                            <h5 class="text-center">Sorry, we don't have this product.</h5>
+                            <h5 class="text-center">Sorry, we don't have this product. <br> Try selecting All products
+                                from side panel.</h5>
                         </div>
                     </div>
                 </div>
