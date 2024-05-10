@@ -4,6 +4,7 @@ import Home from "../components/Home.vue";
 import AboutUs from "../components/AboutUs.vue";
 import Contact from "../components/Contact.vue";
 import Checkout from "../components/Checkout.vue";
+import MyProfile from "../components/MyProfile.vue";
 
 import Login from "../components/Login.vue";
 import Register from "../components/Register.vue";
@@ -45,6 +46,7 @@ const router = createRouter({
     { path: "/", component: Home },
     { path: "/aboutus", component: AboutUs },
     { path: "/contact", component: Contact },
+    { path: "/myprofile", component: MyProfile },
 
     { path: "/login", component: Login },
     { path: "/register", component: Register },
