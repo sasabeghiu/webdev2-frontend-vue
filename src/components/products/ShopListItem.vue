@@ -10,9 +10,9 @@
                 </div>
                 <span class="price float-end">{{ product.price }} &euro;</span>
             </div>
-            <div class="quantity-selector my-2" style="display: flex;">
+            <div class="quantity-selector my-2" style="display: flex; justify-content: center">
                 <button class="btn btn-sm btn-secondary" @click="decrementQuantity" :disabled="isAdded">-</button>
-                <input type="number" v-model.number="quantity" class="form-control quantity-input w-25"
+                <input type="number" v-model.number="quantity" class="form-control quantity-input w-25 text-center"
                     :disabled="isAdded" />
                 <button class="btn btn-sm btn-secondary" @click="incrementQuantity" :disabled="isAdded">+</button>
             </div>

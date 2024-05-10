@@ -43,7 +43,7 @@ const router = createRouter({
     { path: "/aboutus", component: AboutUs },
     { path: "/contact", component: Contact },
     { path: "/myprofile", component: MyProfile, meta: { requiresAuth: true } },
-    { path: "/unauthorized", component: Unauthorized },
+    { path: "/forbidden", component: Unauthorized },
 
     { path: "/login", component: Login },
     { path: "/register", component: Register },
@@ -179,7 +179,7 @@ router.beforeEach((to, from, next) => {
       !authStore.isAdmin
     ) {
       alert("You need to be an admin to access this page.");
-      next({ path: "/unauthorized" });
+      next({ path: "/forbidden" });
     } else {
       next();
     }

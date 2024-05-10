@@ -18,7 +18,7 @@
                     <h2 class="mt-3 mt-lg-5">Shop</h2>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Search product" v-model="searchTerm">
-                        <button class="btn btn-success" @click="update">Search</button>
+                        <button class="btn btn-primary" @click="update">Search</button>
                     </div>
                     <div class="row mt-3">
                         <product-list-item v-for="product in products" :key="product.id" :product="product"

@@ -4,7 +4,7 @@
         <div id="app">
             <div>403</div>
             <div class="txt">
-                Unauthorized<span class="blink">_</span>
+                Forbidden<span class="blink">_</span>
             </div>
         </div>
     </body>

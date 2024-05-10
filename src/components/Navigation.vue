@@ -29,7 +29,6 @@
             <li><router-link to="/categories" class="dropdown-item text-white">Categories</router-link></li>
             <li><router-link to="/roles" class="dropdown-item text-white">Roles</router-link></li>
             <li><router-link to="/users" class="dropdown-item text-white">Users</router-link></li>
-            <li><router-link to="/shoppingcarts" class="dropdown-item text-white">Shopping Carts</router-link></li>
             <li><router-link to="/orders" class="dropdown-item text-white">Orders</router-link></li>
           </ul>
         </li>
