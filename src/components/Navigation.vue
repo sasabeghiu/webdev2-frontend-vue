@@ -7,7 +7,7 @@
           <router-link to="/" class="nav-link" active-class="active">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/shop" class="nav-link" active-class="active">Shop</router-link>
+          <router-link to="/homeservices" class="nav-link" active-class="active">Services</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/aboutus" class="nav-link" active-class="active">About us</router-link>
@@ -15,16 +15,9 @@
         <li class="nav-item">
           <router-link to="/contact" class="nav-link" active-class="active">Contact</router-link>
         </li>
-        <li class="nav-item" v-if="isLoggedIn">
-          <router-link to="/shoppingcart" class="nav-link" active-class="active">
-            <i class="bi bi-cart-check"></i> Shopping Cart
-            <span class="badge bg-secondary">{{ cartItemCount }}</span>
-          </router-link>
+        <li class="nav-item">
+          <router-link to="/shop" class="nav-link" active-class="active">Shop</router-link>
         </li>
-        <li class="nav-item" v-if="isLoggedIn">
-          <router-link to="/orders/myorders/" class="nav-link" active-class="active"><i class="bi bi-basket-fill"></i> My Orders</router-link>
-        </li>
-        <!-- Dropdown for CMS -->
         <li class="nav-item dropdown" v-if="isLoggedIn && isAdmin">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCMS" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
@@ -44,12 +37,27 @@
 
       <!-- Right-aligned links -->
       <ul class="navbar-nav ms-auto px-5">
-        <li class="nav-item" v-if="isLoggedIn">
-          <button class="btn nav-link" @click="logout">Logout</button>
-        </li>
-        <li class="nav-item" v-else>
-          <router-link to="/login" class="btn nav-link">Login</router-link>
-        </li>
+        <div class="dropdown text-end navbar-nav ms-auto px-5" v-if="isLoggedIn">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="./icons/images.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+            <li><router-link to="/myprofile" class="dropdown-item"><i class="bi bi-person-square"></i> My
+                Profile</router-link></li>
+            <li><router-link to="/shoppingcart" class="dropdown-item"><i class="bi bi-cart-check"></i> Shopping Cart
+                <span class="badge bg-secondary">{{ cartItemCount }}</span></router-link></li>
+            <li><router-link to="/orders/myorders/" class="dropdown-item"><i class="bi bi-basket-fill"></i> My
+                Orders</router-link></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><button class="dropdown-item" @click="logout">Sign out</button></li>
+          </ul>
+        </div>
+        <div class="dropdown text-end" v-else>
+          <router-link to="/login" class="btn nav-link">Sign in</router-link>
+        </div>
       </ul>
     </div>
   </nav>
