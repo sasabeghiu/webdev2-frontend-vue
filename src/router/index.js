@@ -27,8 +27,6 @@ import EditService from "../components/services/EditService.vue";
 import UserList from "../components/users/UserList.vue";
 import CreateUser from "../components/users/CreateUser.vue";
 import EditUser from "../components/users/EditUser.vue";
-// import ShoppingCartList from "../components/shoppingcarts/ShoppingCartList.vue";
-// import EditShoppingCart from "../components/shoppingcarts/EditShoppingCart.vue";
 import CartView from "../components/shoppingcarts/CartView.vue";
 import OrderView from "../components/orders/OrderView.vue";
 import UserOrders from "../components/orders/OrdersView.vue";
@@ -129,8 +127,6 @@ const router = createRouter({
       props: true,
       meta: { requiresAuth: true, requiresAdmin: true },
     },
-    // { path: "/shoppingcarts", component: ShoppingCartList },
-    // { path: "/editshoppingcart/:id", component: EditShoppingCart, props: true },
     {
       path: "/shoppingcart",
       component: CartView,
@@ -165,6 +161,18 @@ const router = createRouter({
       meta: { requiresAuth: true, requiresAdmin: true },
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: "smooth",
+      };
+    } else if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  },
 });
 
 router.beforeEach((to, from, next) => {

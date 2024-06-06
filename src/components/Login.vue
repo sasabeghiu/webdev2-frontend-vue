@@ -44,7 +44,7 @@ export default {
         });
     },
     register() {
-      this.$router.push("/register"); // Adjust the path as per your routing setup
+      this.$router.push("/register");  
     }
   }
 };

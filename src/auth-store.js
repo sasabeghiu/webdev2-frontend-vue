@@ -7,13 +7,13 @@ export const useAuthStore = defineStore("authStore", {
     username: "",
     token: "",
     id: "",
-    role_id: "", // Ensure initial state reflects all possible user properties
+    role_id: "",
   }),
   getters: {
-    isLoggedIn: (state) => !!state.username, // Ensure boolean correctness
+    isLoggedIn: (state) => !!state.username,
     getToken: (state) => state.token,
     getId: (state) => state.id,
-    isAdmin: (state) => state.role_id === "1", // Check if this should be a string or number
+    isAdmin: (state) => state.role_id === "1",
   },
   actions: {
     login(username, password) {
@@ -64,7 +64,7 @@ export const useAuthStore = defineStore("authStore", {
       }
     },
     logout() {
-      this.$reset(); // This resets the store to its initial state
+      this.$reset();
       localStorage.removeItem("username");
       localStorage.removeItem("token");
       localStorage.removeItem("id");
@@ -81,7 +81,7 @@ export const useAuthStore = defineStore("authStore", {
             username,
             password,
             email,
-            role_id: 2, // Assuming '2' is the role_id for regular users
+            role_id: 2,
           })
           .then(() => {
             resolve();
@@ -93,10 +93,10 @@ export const useAuthStore = defineStore("authStore", {
       });
     },
     async fetchUserDetails() {
-      if (!this.id) return; // Prevents fetching without an ID
+      if (!this.id) return;
       try {
         const response = await axios.get(`http://localhost/users/${this.id}`);
-        this.role_id = response.data.role_id; // Assuming the backend sends `role_id`
+        this.role_id = response.data.role_id;
       } catch (error) {
         console.error("Failed to fetch user details:", error);
       }

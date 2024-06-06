@@ -1,19 +1,20 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
     <div class="container-fluid">
+      <img src="../../public/logo.jpg" class="logo">
       <!-- Left-aligned links -->
       <ul class="navbar-nav me-auto mb-2 mb-md-0 px-5">
         <li class="nav-item">
           <router-link to="/" class="nav-link" active-class="active">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/ourservices" class="nav-link" active-class="active">Services</router-link>
+          <router-link to="/#ourservices" class="nav-link">Services</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/aboutus" class="nav-link" active-class="active">About us</router-link>
+          <router-link to="/#aboutus" class="nav-link">About us</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/contact" class="nav-link" active-class="active">Contact</router-link>
+          <router-link to="/#contact" class="nav-link">Contact</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/shop" class="nav-link" active-class="active">Shop</router-link>
@@ -37,6 +38,7 @@
       <!-- Right-aligned links -->
       <ul class="navbar-nav ms-auto px-5">
         <div class="dropdown text-end navbar-nav ms-auto px-5" v-if="isLoggedIn">
+          <div class="text-white px-3 py-1">{{ username }}</div>
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
             data-bs-toggle="dropdown" aria-expanded="false">
             <img src="./icons/images.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -72,7 +74,8 @@ export default {
   name: "Navigation",
   data() {
     return {
-      user_id: null,
+      user_id: localStorage.getItem('id'),
+      username: localStorage.getItem('username'),
     };
   },
   computed: {
@@ -103,4 +106,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.logo {
+  margin-left: 90px;
+  margin-right: 90px;
+  width: 40px;
+  height: 40px;
+}
+</style>

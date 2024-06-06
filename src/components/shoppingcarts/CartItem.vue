@@ -16,8 +16,8 @@
                 <span class="price float-end">{{ cartItem.product_price }} &euro;</span>
             </div>
             <div class="card-footer">
-                <button class="btn btn-success" @click="updateCartItem">Update</button>&nbsp;&nbsp;
-                <button class="btn btn-danger" @click="deleteCartItem">Remove</button>
+                <button class="btn btn-light" @click="updateCartItem">Update</button>&nbsp;&nbsp;
+                <button class="btn btn-secondary" @click="deleteCartItem">Remove</button>
             </div>
         </div>
     </div>

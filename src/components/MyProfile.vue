@@ -1,35 +1,31 @@
 <template>
     <section>
         <div class="container">
-            <form ref="form">
-                <h2 class="mt-3 mt-lg-5">My Profile</h2>
-                <h5 class="mb-4">Update your information</h5>
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Username</span>
-                    <input type="text" class="form-control" v-model="user.username" />
-                </div>
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Password</span>
-                    <input type="password" class="form-control" v-model="user.password"
-                        placeholder="Enter new password" />
-                </div>
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Email</span>
-                    <input type="email" class="form-control" v-model="user.email" />
-                </div>
-
-                <div class="input-group mt-4">
-                    <button type="button" class="btn btn-primary" @click="updateUser">
-                        Save changes
-                    </button>
-                    <button type="button" class="mx-2 btn btn-danger" @click="cancel">
-                        Cancel
-                    </button>
-                </div>
-            </form>
+            <div class="profile-form bg-light p-5 rounded shadow-sm">
+                <h2 class="mt-3 mt-lg-5 text-center">My Profile</h2>
+                <h5 class="mb-4 text-center">Update your information</h5>
+                <form ref="form">
+                    <div class="input-group mb-4">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
+                        <input type="text" class="form-control" v-model="user.username" placeholder="Username"
+                            aria-label="Username" aria-describedby="basic-addon1" />
+                    </div>
+                    <div class="input-group mb-4">
+                        <span class="input-group-text" id="basic-addon2"><i class="bi bi-lock-fill"></i></span>
+                        <input type="password" class="form-control" v-model="user.password"
+                            placeholder="Enter new password" aria-label="Password" aria-describedby="basic-addon2" />
+                    </div>
+                    <div class="input-group mb-4">
+                        <span class="input-group-text" id="basic-addon3"><i class="bi bi-envelope-fill"></i></span>
+                        <input type="email" class="form-control" v-model="user.email" placeholder="Email"
+                            aria-label="Email" aria-describedby="basic-addon3" />
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <button type="button" class="btn btn-primary me-md-2" @click="updateUser">Save changes</button>
+                        <button type="button" class="btn btn-secondary" @click="cancel">Cancel</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 </template>
@@ -45,7 +41,7 @@ export default {
             user: {
                 id: 0,
                 username: '',
-                password: null,  // Set default to null to check if changed
+                password: null,
                 email: '',
                 role_id: 1,
             }
@@ -56,10 +52,9 @@ export default {
             let data = {
                 username: this.user.username,
                 email: this.user.email,
-                role_id: this.user.role_id,  // Assuming you want to update role_id; omit if not
+                role_id: this.user.role_id,
             };
 
-            // Only send password if it has been modified
             if (this.user.password) {
                 data.password = this.user.password;
             }
@@ -69,10 +64,10 @@ export default {
                 .then((response) => {
                     console.log(response.data);
                     this.$refs.form.reset();
-                    this.user.password = null;  // Reset password field after update
+                    this.user.password = null;
                     alert('Profile updated successfully!');
                     const authStore = useAuthStore();
-                    authStore.fetchUserDetails();  // Update store data
+                    authStore.fetchUserDetails();
                 })
                 .catch((error) => {
                     console.error(error);
@@ -101,3 +96,29 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.profile-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.input-group-text {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.input-group-text i {
+    font-size: 1.2rem;
+}
+</style>

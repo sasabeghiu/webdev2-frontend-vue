@@ -1,125 +1,82 @@
 <template>
   <section>
-    <div class="container">
-      <div class="hero-section">
-        <img
-          src="https://images.pexels.com/photos/430208/pexels-photo-430208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          class="img">
+    <div class="hero-section">
+      <img
+        src="https://images.pexels.com/photos/430208/pexels-photo-430208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        class="img-fluid hero-image">
+      <div class="container">
         <h2>Welcome to Our Security Services</h2>
-        <p>Ensuring your safety with state-of-the-art solutions.</p>
-      </div>
-      <div class="services-section">
-        <h3>Our Services</h3>
-        <ul>
-          <li v-for="service in services" :key="service.id">
-            {{ service.name }} - {{ service.description }}
-          </li>
-        </ul>
-      </div>
-      <h3>Products</h3>
-      <div class="products">
-        <div v-for="product in products" :key="product.id" class="product">
-          <img :src="product.image" class="product-image">
-          <div class="product-name">{{ product.name }}</div>
-          <div class="product-price">Price: {{ product.price }}</div>
-          <button class="btn btn-secondary product-add">Add to cart</button>
+        <div class="intro">
+          <p>What are the most appreciated features of INNOVA Security brand cameras? 🤔<br>
+            To begin with, the most appreciated aspect was QUALITY, everything INNOVA Security means was built on this
+            principle.</p>
+
+          <p> In addition to this basic criterion, cameras have implemented a lot of functionality, such as: <br>
+            ✔️Microphone (allows users to capture sounds from the environment) <br>
+            ✔️Speaker (allows users to communicate with personnel in the supervised area)<br>
+            ✔️Color (captures color images in low light or night often uses specific technologies to maintain color
+            quality)<br>
+            ✔️Light (it has several functions by which, upon detection of movement, the camera light turns on or can be
+            programmed)<br>
+            ✔️AI detection (detection of suspicious movements of people and cars in the surveillance area of ​​the
+            camera, the application will send a notification in this regard to always be informed and in control)<br>
+            ✔️Data security (the protection of data stored and transmitted is done by adequate security to prevent
+            unauthorized access)
+          </p>
+          <p>
+            These are just some of the features that have made our security cameras appreciated by our customers 🤗. We
+            pride ourselves on providing innovative and reliable solutions for your safety &#10084;
+          </p>
         </div>
       </div>
-      <div class="about-us">
-        <h3>About Us</h3>
-        <p>Detailed information about your company.</p>
+    </div>
+    <div class="container">
+      <div id="projects">
+        <Projects />
+      </div>
+      <div id="ourservices">
+        <OurServices />
+      </div>
+      <div id="aboutus">
+        <AboutUs />
+      </div>
+      <div id="contact">
+        <Contact />
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import axios from "axios";
+import Projects from "./Projects.vue";
+import OurServices from "./OurServices.vue";
+import AboutUs from "./AboutUs.vue";
+import Contact from "./Contact.vue";
+
 export default {
-  name: "Home",
-  data() {
-    return {
-      services: [],
-      testimonials: [],
-    };
-  },
-  mounted() {
-    this.fetchServices();
-    this.fetchProducts();
-  },
-  methods: {
-    fetchServices() {
-      axios.get("http://localhost/services")
-        .then((response) => {
-          this.services = response.data;
-        })
-        .catch((error) => {
-          console.error('Error fetching services:', error);
-        });
-    },
-    fetchProducts() {
-      axios.get("http://localhost/products")
-        .then((response) => {
-          this.products = response.data;
-        })
-        .catch((error) => {
-          console.error('Error fetching products:', error);
-        });
-    }
+  name: 'Home',
+  components: {
+    Projects,
+    OurServices,
+    AboutUs,
+    Contact
   }
 };
 </script>
 
 <style scoped>
-.img {
-  position: relative;
-  top: -25px;
-  left: -312px;
-  width: 1920px;
+.hero-image {
+  width: 100%;
   height: 400px;
-  background-repeat: no-repeat;
-  background-position: center center;
   object-fit: cover;
   object-position: 0% 20%;
-}
-
-.products {
-  display: flex;
-}
-
-.product {
   position: relative;
-  border: 1px solid black;
-  margin: 10px;
-  padding: 15px;
-  width: 250px;
-  height: 300px;
+  top: -25px;
 }
 
-.product-image {
-  width: 100px;
-  height: 100px;
-}
+.intro {
+  display: flex;
+  flex-direction: column;
 
-.product-name {
-  font-weight: bold;
-}
-
-.product-price {
-  position: absolute;
-  color: green;
-  bottom: 0;
-}
-
-.product-add {
-  position: absolute;
-  bottom: 30px;
-}
-
-.services-section,
-.testimonials-section,
-.about-us {
-  padding: 20px;
-  background-color: #f8f9fa;
 }
 </style>
