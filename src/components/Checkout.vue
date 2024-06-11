@@ -21,10 +21,10 @@
             </div>
             <div class="col-md-6 px-5">
                 <h2 class="mb-3 text-center">Shipping Information</h2>
-                <form @submit.prevent="placeOrder" class="card p-4 shadow-sm">
+                <form @submit.prevent="saveShippingInfo" class="card p-4 shadow-sm">
                     <div class="mb-3">
                         <label for="name" class="form-label">Full Name</label>
-                        <input type="text" id="name" v-model="shippingInfo.name" class="form-control" required>
+                        <input type="text" id="name" v-model="shippingInfo.full_name" class="form-control" required>
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="postalCode" class="form-label">Postal Code</label>
-                        <input type="text" id="postalCode" v-model="shippingInfo.postalCode" class="form-control"
+                        <input type="text" id="postalCode" v-model="shippingInfo.postal_code" class="form-control"
                             required>
                     </div>
                     <div class="mb-3">
@@ -45,9 +45,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone Number</label>
-                        <input type="tel" id="phone" v-model="shippingInfo.phone" class="form-control" required>
+                        <input type="tel" id="phone" v-model="shippingInfo.phone_number" class="form-control" required>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Place Order</button>
+                    <button type="submit" class="btn btn-primary w-100">Save and Place Order</button>
                 </form>
             </div>
         </div>
@@ -57,6 +57,10 @@
 <script>
 import axios from 'axios';
 import { useCartStore } from '../cart-store';
+const userEmail = localStorage.getItem('email');
+console.log("test", userEmail);
+const userId = localStorage.getItem('id');
+
 export default {
     name: 'Checkout',
     data() {
@@ -64,18 +68,22 @@ export default {
             cartItems: [],
             totalPrice: 0,
             shippingInfo: {
-                name: '',
+                user_id: userId,
+                full_name: '',
                 address: '',
                 city: '',
-                postalCode: '',
+                postal_code: '',
                 country: '',
-                phone: ''
-            }
+                email: userEmail,
+                phone_number: ''
+            },
+            existingShippingInfo: false
         };
     },
     created() {
         console.log('Received in Checkout:', this.$route.query);
         this.initData();
+        this.fetchShippingInfo();
     },
     methods: {
         initData() {
@@ -87,6 +95,34 @@ export default {
                     console.error('Error parsing cart items:', error);
                 }
             }
+        },
+        async fetchShippingInfo() {
+            try {
+                const userId = localStorage.getItem('id');
+                const response = await axios.get(`http://localhost/shippinginfo/user/${userId}`);
+                if (response.data) {
+                    this.shippingInfo = response.data;
+                    this.existingShippingInfo = true;
+                }
+            } catch (error) {
+                console.error('Error fetching shipping info:', error);
+            }
+        },
+        async saveShippingInfo() {
+            try {
+                const userId = localStorage.getItem('id');
+                if (this.existingShippingInfo) {
+                    await axios.put(`http://localhost/shippinginfo/${userId}`, this.shippingInfo);
+                } else {
+                    await axios.post('http://localhost/shippinginfo', { ...this.shippingInfo });
+                    this.existingShippingInfo = true;
+                }
+                this.placeOrder();
+            } catch (error) {
+                console.error('Error saving shipping info:', error);
+                alert('There was an error saving your shipping information.');
+            }
+            console.log(userEmail, userId)
         },
         async placeOrder() {
             try {

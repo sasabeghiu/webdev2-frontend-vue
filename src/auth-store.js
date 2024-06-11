@@ -26,12 +26,14 @@ export const useAuthStore = defineStore("authStore", {
               token: res.data.jwt,
               id: res.data.id,
               role_id: res.data.role_id,
+              email: res.data.email,
             });
 
             localStorage.setItem("username", res.data.username);
             localStorage.setItem("token", res.data.jwt);
             localStorage.setItem("id", res.data.id);
             localStorage.setItem("role_id", res.data.role_id);
+            localStorage.setItem("email", res.data.email);
 
             axios.defaults.headers.common["Authorization"] =
               "Bearer " + res.data.jwt;
@@ -54,9 +56,10 @@ export const useAuthStore = defineStore("authStore", {
       const token = localStorage.getItem("token");
       const id = localStorage.getItem("id");
       const role_id = localStorage.getItem("role_id");
+      const email = localStorage.getItem("email");
 
-      if (token && username && id && role_id) {
-        this.$patch({ username, token, id, role_id });
+      if (token && username && id && role_id && email) {
+        this.$patch({ username, token, id, role_id, email });
         axios.defaults.headers.common["Authorization"] = "Bearer " + token;
         this.fetchUserDetails();
       } else {
@@ -69,6 +72,7 @@ export const useAuthStore = defineStore("authStore", {
       localStorage.removeItem("token");
       localStorage.removeItem("id");
       localStorage.removeItem("role_id");
+      localStorage.removeItem("email");
       delete axios.defaults.headers.common["Authorization"];
       const cartStore = useCartStore();
       cartStore.setItemCount(0);

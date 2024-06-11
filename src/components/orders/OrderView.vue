@@ -8,6 +8,13 @@
                 <p><strong>Order Status:</strong> {{ order.status }}</p>
                 <p><strong>Total:</strong> €{{ order.total }}</p>
                 <p><strong>Order Date:</strong> {{ formatDate(order.created_at) }}</p>
+                <p><strong>Full Name :</strong> {{ info.full_name }}</p>
+                <p><strong>Address :</strong> {{ info.address }}</p>
+                <p><strong>City :</strong> {{ info.city }}</p>
+                <p><strong>Postal Code :</strong> {{ info.postal_code }}</p>
+                <p><strong>Country :</strong> {{ info.country }}</p>
+                <p><strong>Email :</strong> {{ info.email }}</p>
+                <p><strong>Phone :</strong> {{ info.phone_number }}</p>
                 <div>
                     <h3>Items:</h3>
                     <div v-for="item in order.items" :key="item.id"
@@ -37,11 +44,13 @@ export default {
     name: 'OrderView',
     data() {
         return {
-            order: null
+            order: null,
+            info: null
         };
     },
     mounted() {
         this.fetchOrderDetails();
+        this.fetchShippingDetails();
     },
     methods: {
         async fetchOrderDetails() {
@@ -57,6 +66,20 @@ export default {
                 }
             } else {
                 console.error('Order ID not provided.');
+            }
+        },
+        async fetchShippingDetails() {
+            const userId = localStorage.getItem('id');
+            if (userId) {
+                try {
+                    const response = await axios.get(`http://localhost/shippinginfo/${userId}`);
+                    const info = response.data;
+                    this.info = info;
+                } catch (error) {
+                    console.error('Error fetching info details:', error);
+                }
+            } else {
+                console.error('userId ID not provided.');
             }
         },
         async populateProductDetails(order) {
