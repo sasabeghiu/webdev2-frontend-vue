@@ -57,7 +57,7 @@ export default {
     },
     methods: {
         submitForm() {
-            alert(`Form submitted!\nName: ${this.form.name}\nEmail: ${this.form.email}\nCompany: ${this.form.company}\nMessage: ${this.form.message}`);
+            alert(`Contact Form submitted!\nName: ${this.form.name}\nEmail: ${this.form.email}\nCompany: ${this.form.company}\nMessage: ${this.form.message}`);
             this.form.name = '';
             this.form.email = '';
             this.form.company = '';

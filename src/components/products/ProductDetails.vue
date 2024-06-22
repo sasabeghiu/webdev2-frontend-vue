@@ -1,13 +1,17 @@
 <template>
-    <div v-if="product" class="card-body">
-        <button class="btn btn-primary" style="z-index: 3;" @click="this.$router.push('/shop');">Go back</button>
-        <h5 class="card-title">{{ product.name }}</h5>
-        <p class="card-text">{{ product.description }}</p>
-        <p class="card-text"><small class="text-body-secondary">{{ product.price }} &euro;</small></p>
-        <img :src="product.image" :alt="product.name" class="img" />
-    </div>
-    <div v-else>
-        Loading product details...
+    <div class="container">
+        <div v-if="product" class="card-body">
+            <button class="btn btn-primary" style="z-index: 3;" @click="this.$router.push('/shop');">Go back</button>
+            <h5 class="card-title mt-5">{{ product.name }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p class="card-text"><small class="text-body-secondary">Price: {{ product.price }} &euro;</small></p>
+            <p class="card-text"><small class="text-body-secondary">Quantity Available: {{ product.quantity_available }}
+                    pieces</small></p>
+            <img :src="product.image" :alt="product.name" class="img" />
+        </div>
+        <div v-else>
+            Loading product details...
+        </div>
     </div>
 </template>
 
@@ -49,8 +53,6 @@ export default {
 }
 
 .img {
-    position: absolute;
     width: 30%;
-    z-index: 1;
 }
 </style>
