@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
     <div class="container-fluid">
-      <img src="../../public/logo.jpg" class="logo">
+      <img src="/logo.jpg" class="logo">
       <!-- Left-aligned links -->
       <ul class="navbar-nav me-auto mb-2 mb-md-0 px-5">
         <li class="nav-item">

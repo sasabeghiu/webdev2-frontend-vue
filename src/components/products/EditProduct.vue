@@ -90,12 +90,10 @@ export default {
     axios
       .get("http://localhost/categories")
       .then((result) => {
-        console.log(result);
         this.categories = result.data;
         axios
           .get("http://localhost/products/" + this.id)
           .then((result) => {
-            console.log(result);
             this.product = result.data;
           })
           .catch((error) => console.log(error));

@@ -78,12 +78,10 @@ export default {
         axios
             .get("http://localhost/roles")
             .then((result) => {
-                console.log(result);
                 this.roles = result.data;
                 axios
                     .get("http://localhost/users/" + this.id)
                     .then((result) => {
-                        console.log(result);
                         this.user = result.data;
                     })
                     .catch((error) => console.log(error));

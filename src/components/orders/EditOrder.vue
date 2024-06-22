@@ -9,12 +9,12 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text">Current Status</span>
                         <select class="form-select" v-model="order.status">
-                            <option value="Ordered">Ordered</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Processing">Processing</option>
-                            <option value="Shipped">Shipped</option>
-                            <option value="Delivered">Delivered</option>
-                            <option value="Cancelled">Cancelled</option>
+                            <option value="ordered">Ordered</option>
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
                         </select>
                     </div>
                 </div>
@@ -64,7 +64,6 @@ export default {
         axios
             .get("http://localhost/orders/" + this.id)
             .then((result) => {
-                console.log(result);
                 this.order = result.data;
             })
             .catch((error) => console.log(error));

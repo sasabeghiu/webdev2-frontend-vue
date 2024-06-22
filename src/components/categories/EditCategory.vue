@@ -55,7 +55,6 @@ export default {
         axios
             .get("http://localhost/categories/" + this.id)
             .then((result) => {
-                console.log(result);
                 this.category = result.data;
             })
             .catch((error) => console.log(error));

@@ -85,7 +85,6 @@ export default {
     axios
       .get("/categories")
       .then((result) => {
-        console.log(result);
         this.categories = result.data;
       })
       .catch((error) => console.log(error));

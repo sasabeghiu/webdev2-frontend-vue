@@ -80,7 +80,6 @@ export default {
             axios
                 .get(`http://localhost/products?${params.toString()}`)
                 .then((result) => {
-                    console.log(result);
                     this.products = result.data;
                     if (this.products.length === 0) {
                         console.log("No products found for: " + this.searchTerm);

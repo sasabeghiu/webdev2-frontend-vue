@@ -72,7 +72,7 @@ export default {
             const userId = localStorage.getItem('id');
             if (userId) {
                 try {
-                    const response = await axios.get(`http://localhost/shippinginfo/${userId}`);
+                    const response = await axios.get(`http://localhost/shippinginfo/user/${userId}`);
                     const info = response.data;
                     this.info = info;
                 } catch (error) {

@@ -34,7 +34,7 @@
                         <p><strong>Email:</strong> innova-group@outlook.com</p>
                     </div>
                     <div class="map mt-4">
-                        <img src="../../public/innova.png" alt="Map" class="img-fluid">
+                        <img src="/innova.png" alt="Map" class="img-fluid">
                     </div>
                 </div>
             </div>

@@ -73,7 +73,6 @@ export default {
         axios
             .get('http://localhost/roles')
             .then((result) => {
-                console.log(result);
                 this.roles = result.data;
             })
             .catch((error) => console.log(error));

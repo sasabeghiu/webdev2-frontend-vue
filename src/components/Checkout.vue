@@ -58,7 +58,6 @@
 import axios from 'axios';
 import { useCartStore } from '../cart-store';
 const userEmail = localStorage.getItem('email');
-console.log("test", userEmail);
 const userId = localStorage.getItem('id');
 
 export default {
@@ -81,7 +80,6 @@ export default {
         };
     },
     created() {
-        console.log('Received in Checkout:', this.$route.query);
         this.initData();
         this.fetchShippingInfo();
     },
@@ -122,7 +120,6 @@ export default {
                 console.error('Error saving shipping info:', error);
                 alert('There was an error saving your shipping information.');
             }
-            console.log(userEmail, userId)
         },
         async placeOrder() {
             try {

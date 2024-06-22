@@ -34,7 +34,6 @@ export default {
             axios
                 .get("http://localhost/services")
                 .then((result) => {
-                    console.log(result);
                     this.services = result.data;
                 })
                 .catch((error) => console.log(error));

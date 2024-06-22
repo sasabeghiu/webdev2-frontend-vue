@@ -25,9 +25,9 @@
                 <div class="col-md-4">
                     <h5>Company</h5>
                     <ul class="list-unstyled">
-                        <li><router-link to="/privacy-policy" class="nav-link text-white">Privacy Policy</router-link>
+                        <li><router-link to="/" class="nav-link text-white">Privacy Policy</router-link>
                         </li>
-                        <li><router-link to="/terms-of-service" class="nav-link text-white">Terms of
+                        <li><router-link to="/" class="nav-link text-white">Terms of
                                 Service</router-link></li>
                     </ul>
                 </div>

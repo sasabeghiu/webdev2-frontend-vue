@@ -55,7 +55,6 @@ export default {
         axios
             .get("http://localhost/roles/" + this.id)
             .then((result) => {
-                console.log(result);
                 this.role = result.data;
             })
             .catch((error) => console.log(error));

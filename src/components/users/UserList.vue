@@ -34,7 +34,6 @@ export default {
             axios
                 .get("http://localhost/users")
                 .then((result) => {
-                    console.log(result);
                     this.users = result.data;
                 })
                 .catch((error) => console.log(error));

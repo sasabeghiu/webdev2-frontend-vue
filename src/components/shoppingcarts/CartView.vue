@@ -67,7 +67,6 @@ export default {
             const cartItems = encodeURIComponent(JSON.stringify(this.cartItems));
             const totalPrice = encodeURIComponent(this.totalPrice);
             const url = `/checkout?cartItems=${cartItems}&totalPrice=${totalPrice}`;
-            console.log('Navigating to:', url);
             this.$router.push(url);
         }
     }

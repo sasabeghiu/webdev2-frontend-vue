@@ -3,9 +3,20 @@
         <h1 class="text-center mb-4">My Orders</h1>
         <div v-for="order in orders" :key="order.id" class="order card mb-4 shadow-sm">
             <div class="card-body">
-                <h2 class="card-title">Order ID: {{ order.id }} - Total: €{{ formatTotal(order.total) }}</h2>
-                <p class="card-text"><strong>Order Status:</strong> {{ order.status }}</p>
-                <p class="card-text">Ordered on: {{ formatDate(order.created_at) }}</p>
+                <div class="order-details">
+                    <h2 class="card-title">Order ID: {{ order.id }} - Total: €{{ formatTotal(order.total) }}</h2>
+                    <p class="card-text"><strong>Order Status:</strong> {{ order.status }}</p>
+                    <p class="card-text">Ordered on: {{ formatDate(order.created_at) }}</p>
+                </div>
+                <div class="shipping">
+                    <p><strong>Full Name :</strong> {{ info.full_name }}</p>
+                    <p><strong>Address :</strong> {{ info.address }}</p>
+                    <p><strong>City :</strong> {{ info.city }}</p>
+                    <p><strong>Postal Code :</strong> {{ info.postal_code }}</p>
+                    <p><strong>Country :</strong> {{ info.country }}</p>
+                    <p><strong>Email :</strong> {{ info.email }}</p>
+                    <p><strong>Phone :</strong> {{ info.phone_number }}</p>
+                </div>
                 <div v-for="item in order.items" :key="item.id"
                     class="order-item border rounded mb-3 p-3 d-flex align-items-center">
                     <img :src="item.product?.image || 'https://via.placeholder.com/100'" alt="Product Image"
@@ -31,11 +42,13 @@ export default {
     name: 'UserOrders',
     data() {
         return {
-            orders: []
+            orders: [],
+            info: null
         };
     },
     created() {
         this.fetchUserOrders();
+        this.fetchShippingDetails();
     },
     methods: {
         async fetchUserOrders() {
@@ -51,6 +64,20 @@ export default {
                 }
             } else {
                 console.error('User ID not found');
+            }
+        },
+        async fetchShippingDetails() {
+            const userId = localStorage.getItem('id');
+            if (userId) {
+                try {
+                    const response = await axios.get(`http://localhost/shippinginfo/user/${userId}`);
+                    const info = response.data;
+                    this.info = info;
+                } catch (error) {
+                    console.error('Error fetching info details:', error);
+                }
+            } else {
+                console.error('userId ID not provided.');
             }
         },
         async populateProductDetails(orders) {
@@ -113,5 +140,18 @@ export default {
 
 .card-body p {
     margin-bottom: 0.5rem;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.shipping {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    margin-top: -80px;
+    width: 400px;
 }
 </style>

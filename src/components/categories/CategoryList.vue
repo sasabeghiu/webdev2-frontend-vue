@@ -35,7 +35,6 @@ export default {
             axios
                 .get("http://localhost/categories")
                 .then((result) => {
-                    console.log(result);
                     this.categories = result.data;
                 })
                 .catch((error) => console.log(error));

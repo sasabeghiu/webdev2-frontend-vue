@@ -88,7 +88,6 @@ export default {
             axios
                 .get(`http://localhost/users/${this.user.id}`)
                 .then((response) => {
-                    console.log(response);
                     this.user = { ...this.user, ...response.data };
                 })
                 .catch((error) => console.log(error));

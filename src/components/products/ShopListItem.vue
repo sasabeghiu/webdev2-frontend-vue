@@ -55,7 +55,6 @@ export default {
                     quantity: quantity,
                 })
                 .then((result) => {
-                    console.log(result);
                     this.isAdded = true;
                     const cartStore = useCartStore();
                     cartStore.fetchItemCount();
