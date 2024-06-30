@@ -2,7 +2,7 @@
 This repository serves as a frontend in Vue for the Web Development 2 assignment.
 
 ## Hosted Project URL
-https://innova-security.netlify.app/
+https://innovasecurity.netlify.app/
 
 ## Local Usage
 
