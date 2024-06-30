@@ -50,7 +50,7 @@ export default {
     methods: {
         addService() {
             axios
-                .post(`http://localhost/services`, this.service)
+                .post(`https://webdev2-a5a67f9ba660.herokuapp.com/services`, this.service)
                 .then((res) => {
                     console.log(res.data);
                     this.$refs.form.reset();

@@ -28,7 +28,7 @@ export default {
     },
     methods: {
         fetchOrders() {
-            axios.get("http://localhost/orders")
+            axios.get("https://webdev2-a5a67f9ba660.herokuapp.com/orders")
                 .then((response) => {
                     this.orders = response.data;
                 })

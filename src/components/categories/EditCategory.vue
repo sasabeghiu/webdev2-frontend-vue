@@ -42,7 +42,7 @@ export default {
     methods: {
         updateCategory() {
             axios
-                .put("http://localhost/categories/" + this.category.id, this.category)
+                .put("https://webdev2-a5a67f9ba660.herokuapp.com/categories/" + this.category.id, this.category)
                 .then((res) => {
                     console.log(res.data);
                     this.$refs.form.reset();
@@ -53,7 +53,7 @@ export default {
     },
     mounted() {
         axios
-            .get("http://localhost/categories/" + this.id)
+            .get("https://webdev2-a5a67f9ba660.herokuapp.com/categories/" + this.id)
             .then((result) => {
                 this.category = result.data;
             })

@@ -32,7 +32,7 @@ export default {
     methods: {
         update() {
             axios
-                .get("http://localhost/services")
+                .get("https://webdev2-a5a67f9ba660.herokuapp.com/services")
                 .then((result) => {
                     this.services = result.data;
                 })

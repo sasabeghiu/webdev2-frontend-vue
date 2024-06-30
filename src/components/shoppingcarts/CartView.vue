@@ -46,7 +46,7 @@ export default {
     methods: {
         fetchCartItems() {
             if (this.userId) {
-                axios.get(`http://localhost/shoppingcarts/user_${this.userId}`)
+                axios.get(`https://webdev2-a5a67f9ba660.herokuapp.com/shoppingcarts/user_${this.userId}`)
                     .then(response => {
                         this.cartItems = response.data;
                     })

@@ -28,7 +28,7 @@ export default {
     methods: {
         deleteShoppingCart(id) {
             axios
-                .delete("http://localhost/shoppingcarts/" + id)
+                .delete("https://webdev2-a5a67f9ba660.herokuapp.com/shoppingcarts/" + id)
                 .then((result) => {
                     console.log(result);
                     this.$emit('update')

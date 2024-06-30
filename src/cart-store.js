@@ -33,7 +33,7 @@ export const useCartStore = defineStore("cart", {
     async fetchItemCount() {
       try {
         const response = await axios.get(
-          `http://localhost/cartitems/user/${localStorage.getItem("id")}/count`
+          `https://webdev2-a5a67f9ba660.herokuapp.com/cartitems/user/${localStorage.getItem("id")}/count`
         );
         this.setItemCount(response.data);
       } catch (error) {

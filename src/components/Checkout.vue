@@ -97,7 +97,7 @@ export default {
         async fetchShippingInfo() {
             try {
                 const userId = localStorage.getItem('id');
-                const response = await axios.get(`http://localhost/shippinginfo/user/${userId}`);
+                const response = await axios.get(`https://webdev2-a5a67f9ba660.herokuapp.com/shippinginfo/user/${userId}`);
                 if (response.data) {
                     this.shippingInfo = response.data;
                     this.existingShippingInfo = true;
@@ -110,9 +110,9 @@ export default {
             try {
                 const userId = localStorage.getItem('id');
                 if (this.existingShippingInfo) {
-                    await axios.put(`http://localhost/shippinginfo/${userId}`, this.shippingInfo);
+                    await axios.put(`https://webdev2-a5a67f9ba660.herokuapp.com/shippinginfo/${userId}`, this.shippingInfo);
                 } else {
-                    await axios.post('http://localhost/shippinginfo', { ...this.shippingInfo });
+                    await axios.post('https://webdev2-a5a67f9ba660.herokuapp.com/shippinginfo', { ...this.shippingInfo });
                     this.existingShippingInfo = true;
                 }
                 this.placeOrder();
@@ -131,14 +131,14 @@ export default {
                     items: this.cartItems
                 };
 
-                const response = await axios.post('http://localhost/orders', orderDetails);
+                const response = await axios.post('https://webdev2-a5a67f9ba660.herokuapp.com/orders', orderDetails);
 
                 if (response.status === 201) {
                     const orderId = response.data.id;
 
                     let allItemsAdded = true;
                     for (let item of this.cartItems) {
-                        const itemResponse = await axios.post('http://localhost/orders/items', {
+                        const itemResponse = await axios.post('https://webdev2-a5a67f9ba660.herokuapp.com/orders/items', {
                             order_id: orderId,
                             product_id: item.product_id,
                             quantity: item.quantity,
@@ -151,7 +151,7 @@ export default {
                         }
                     }
                     if (allItemsAdded) {
-                        const deleteCartResponse = await axios.delete(`http://localhost/shoppingcarts/${this.cartItems[0].cart_id}`);
+                        const deleteCartResponse = await axios.delete(`https://webdev2-a5a67f9ba660.herokuapp.com/shoppingcarts/${this.cartItems[0].cart_id}`);
                         if (deleteCartResponse.status === 204) {
                             const cartStore = useCartStore();
                             cartStore.clearCart();

@@ -42,7 +42,7 @@ export default {
     methods: {
         updateRole() {
             axios
-                .put("http://localhost/roles/" + this.role.id, this.role)
+                .put("https://webdev2-a5a67f9ba660.herokuapp.com/roles/" + this.role.id, this.role)
                 .then((res) => {
                     console.log(res.data);
                     this.$refs.form.reset();
@@ -53,7 +53,7 @@ export default {
     },
     mounted() {
         axios
-            .get("http://localhost/roles/" + this.id)
+            .get("https://webdev2-a5a67f9ba660.herokuapp.com/roles/" + this.id)
             .then((result) => {
                 this.role = result.data;
             })

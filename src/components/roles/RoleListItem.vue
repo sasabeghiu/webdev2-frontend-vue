@@ -25,7 +25,7 @@ export default {
     methods: {
         deleteRole(id) {
             axios
-                .delete("http://localhost/roles/" + id)
+                .delete("https://webdev2-a5a67f9ba660.herokuapp.com/roles/" + id)
                 .then((result) => {
                     console.log(result);
                     this.$emit('update')

@@ -53,7 +53,7 @@ export default {
     methods: {
         updateService() {
             axios
-                .put(`http://localhost/services/` + this.service.id, this.service)
+                .put(`https://webdev2-a5a67f9ba660.herokuapp.com/services/` + this.service.id, this.service)
                 .then((res) => {
                     console.log(res.data);
                     this.$refs.form.reset();
@@ -64,7 +64,7 @@ export default {
     },
     mounted() {
         axios
-            .get(`http://localhost/services/` + this.id)
+            .get(`https://webdev2-a5a67f9ba660.herokuapp.com/services/` + this.id)
             .then((res) => {
                 this.service = res.data;
             })

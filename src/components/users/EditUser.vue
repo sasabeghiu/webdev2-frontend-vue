@@ -65,7 +65,7 @@ export default {
     methods: {
         updateUser() {
             axios
-                .put("http://localhost/users/" + this.user.id, this.user)
+                .put("https://webdev2-a5a67f9ba660.herokuapp.com/users/" + this.user.id, this.user)
                 .then((res) => {
                     console.log(res.data);
                     this.$refs.form.reset();
@@ -76,11 +76,11 @@ export default {
     },
     mounted() {
         axios
-            .get("http://localhost/roles")
+            .get("https://webdev2-a5a67f9ba660.herokuapp.com/roles")
             .then((result) => {
                 this.roles = result.data;
                 axios
-                    .get("http://localhost/users/" + this.id)
+                    .get("https://webdev2-a5a67f9ba660.herokuapp.com/users/" + this.id)
                     .then((result) => {
                         this.user = result.data;
                     })

@@ -33,7 +33,7 @@ export default {
     },
     methods: {
         fetchProductDetails() {
-            axios.get(`http://localhost/products/${this.$route.params.id}`)
+            axios.get(`https://webdev2-a5a67f9ba660.herokuapp.com/products/${this.$route.params.id}`)
                 .then(response => {
                     this.product = response.data;
                 })

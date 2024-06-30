@@ -112,7 +112,7 @@ export default {
             }
 
             axios
-                .put(`http://localhost/users/${this.user.id}`, data)
+                .put(`https://webdev2-a5a67f9ba660.herokuapp.com/users/${this.user.id}`, data)
                 .then((response) => {
                     console.log(response.data);
                     this.$refs.form.reset();
@@ -137,7 +137,7 @@ export default {
             };
 
             axios
-                .put(`http://localhost/shippinginfo/${this.user.id}`, data)
+                .put(`https://webdev2-a5a67f9ba660.herokuapp.com/shippinginfo/${this.user.id}`, data)
                 .then((response) => {
                     console.log(response.data);
                     this.$refs.form.reset();
@@ -156,7 +156,7 @@ export default {
             const userId = localStorage.getItem('id');
             if (userId) {
                 try {
-                    const response = await axios.get(`http://localhost/shippinginfo/user/${userId}`);
+                    const response = await axios.get(`https://webdev2-a5a67f9ba660.herokuapp.com/shippinginfo/user/${userId}`);
                     const info = response.data;
                     this.info = info;
                 } catch (error) {
@@ -175,7 +175,7 @@ export default {
             this.user.email = authStore.getToken;
             this.user.role_id = authStore.isAdmin ? "1" : "2";
             axios
-                .get(`http://localhost/users/${this.user.id}`)
+                .get(`https://webdev2-a5a67f9ba660.herokuapp.com/users/${this.user.id}`)
                 .then((response) => {
                     this.user = { ...this.user, ...response.data };
                 })

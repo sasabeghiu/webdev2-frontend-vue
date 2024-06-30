@@ -37,7 +37,7 @@ export default {
     },
     methods: {
         addCategory() {
-            axios.post("http://localhost/categories", this.category)
+            axios.post("https://webdev2-a5a67f9ba660.herokuapp.com/categories", this.category)
                 .then((res) => {
                     console.log(res.data);
                     this.$refs.form.reset();

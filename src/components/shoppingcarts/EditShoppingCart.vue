@@ -64,7 +64,7 @@ export default {
     methods: {
         updateShoppingCart() {
             axios
-                .put("http://localhost/shoppingcarts/" + this.shoppingCart.id, this.shoppingCart)
+                .put("https://webdev2-a5a67f9ba660.herokuapp.com/shoppingcarts/" + this.shoppingCart.id, this.shoppingCart)
                 .then((result) => {
                     console.log(result);
                     this.$refs.form.reset();
@@ -75,12 +75,12 @@ export default {
     },
     mounted() {
         axios
-            .get("http://localhost/users")
+            .get("https://webdev2-a5a67f9ba660.herokuapp.com/users")
             .then((result) => {
                 console.log(result);
                 this.users = result.data;
                 axios
-                    .get("http://localhost/shoppingcarts/" + this.id)
+                    .get("https://webdev2-a5a67f9ba660.herokuapp.com/shoppingcarts/" + this.id)
                     .then((result) => {
                         console.log(result);
                         this.shoppingCart = result.data;

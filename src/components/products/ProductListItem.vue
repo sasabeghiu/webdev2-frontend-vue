@@ -29,7 +29,7 @@ export default {
   methods: {
     deleteProduct(id) {
       axios
-        .delete("http://localhost/products/" + id)
+        .delete("https://webdev2-a5a67f9ba660.herokuapp.com/products/" + id)
         .then((result) => {
           console.log(result);
           this.$emit('update')

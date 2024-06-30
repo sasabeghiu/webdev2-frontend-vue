@@ -30,7 +30,7 @@ export default {
     methods: {
         update() {
             axios
-                .get("http://localhost/shoppingcarts")
+                .get("https://webdev2-a5a67f9ba660.herokuapp.com/shoppingcarts")
                 .then((result) => {
                     console.log(result);
                     this.shoppingCarts = result.data;

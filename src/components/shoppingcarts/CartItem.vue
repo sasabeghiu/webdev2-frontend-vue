@@ -42,7 +42,7 @@ export default {
     },
     methods: {
         updateCartItem() {
-            axios.put(`http://localhost/cartitems/${this.cartItem.id}`, { quantity: this.displayQuantity })
+            axios.put(`https://webdev2-a5a67f9ba660.herokuapp.com/cartitems/${this.cartItem.id}`, { quantity: this.displayQuantity })
                 .then(() => {
                     this.cartItem.quantity = this.displayQuantity;
                     const cartStore = useCartStore();
@@ -52,7 +52,7 @@ export default {
 
         },
         deleteCartItem() {
-            axios.delete(`http://localhost/cartitems/${this.cartItem.id}`)
+            axios.delete(`https://webdev2-a5a67f9ba660.herokuapp.com/cartitems/${this.cartItem.id}`)
                 .then(() => {
                     this.$emit('cart-item-deleted', this.cartItem.id);
                     const cartStore = useCartStore();

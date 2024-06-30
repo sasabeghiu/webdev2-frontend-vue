@@ -37,7 +37,7 @@ export default {
     },
     methods: {
         addRole() {
-            axios.post("http://localhost/roles", this.role)
+            axios.post("https://webdev2-a5a67f9ba660.herokuapp.com/roles", this.role)
                 .then((res) => {
                     console.log(res.data);
                     this.$refs.form.reset();

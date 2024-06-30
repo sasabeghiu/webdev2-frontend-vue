@@ -43,7 +43,7 @@ export default {
     methods: {
         deleteOrder(id) {
             axios
-                .delete("http://localhost/orders/" + id)
+                .delete("https://webdev2-a5a67f9ba660.herokuapp.com/orders/" + id)
                 .then((result) => {
                     console.log(result);
                     this.$emit('update')

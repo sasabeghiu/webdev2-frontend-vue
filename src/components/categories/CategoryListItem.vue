@@ -25,7 +25,7 @@ export default {
     methods: {
         deleteCategory(id) {
             axios
-                .delete("http://localhost/categories/" + id)
+                .delete("https://webdev2-a5a67f9ba660.herokuapp.com/categories/" + id)
                 .then((result) => {
                     console.log(result);
                     this.$emit('update')

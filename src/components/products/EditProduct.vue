@@ -77,7 +77,7 @@ export default {
   methods: {
     updateProduct() {
       axios
-        .put("http://localhost/products/" + this.product.id, this.product)
+        .put("https://webdev2-a5a67f9ba660.herokuapp.com/products/" + this.product.id, this.product)
         .then((res) => {
           console.log(res.data);
           this.$refs.form.reset();
@@ -88,11 +88,11 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost/categories")
+      .get("https://webdev2-a5a67f9ba660.herokuapp.com/categories")
       .then((result) => {
         this.categories = result.data;
         axios
-          .get("http://localhost/products/" + this.id)
+          .get("https://webdev2-a5a67f9ba660.herokuapp.com/products/" + this.id)
           .then((result) => {
             this.product = result.data;
           })

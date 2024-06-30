@@ -27,7 +27,7 @@ export default {
     methods: {
         deleteService(id) {
             axios
-                .delete("http://localhost/services/" + id)
+                .delete("https://webdev2-a5a67f9ba660.herokuapp.com/services/" + id)
                 .then(() => {
                     this.$emit("update");
                 })

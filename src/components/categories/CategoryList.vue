@@ -33,7 +33,7 @@ export default {
     methods: {
         update() {
             axios
-                .get("http://localhost/categories")
+                .get("https://webdev2-a5a67f9ba660.herokuapp.com/categories")
                 .then((result) => {
                     this.categories = result.data;
                 })

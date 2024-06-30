@@ -19,7 +19,7 @@ export const useAuthStore = defineStore("authStore", {
     login(username, password) {
       return new Promise((resolve, reject) => {
         axios
-          .post("http://localhost/users/login", { username, password })
+          .post("https://webdev2-a5a67f9ba660.herokuapp.com/users/login", { username, password })
           .then(async (res) => {
             this.$patch({
               username: res.data.username,
@@ -81,7 +81,7 @@ export const useAuthStore = defineStore("authStore", {
     register(username, password, email) {
       return new Promise((resolve, reject) => {
         axios
-          .post("http://localhost/users/register", {
+          .post("https://webdev2-a5a67f9ba660.herokuapp.com/users/register", {
             username,
             password,
             email,
@@ -99,7 +99,7 @@ export const useAuthStore = defineStore("authStore", {
     async fetchUserDetails() {
       if (!this.id) return;
       try {
-        const response = await axios.get(`http://localhost/users/${this.id}`);
+        const response = await axios.get(`https://webdev2-a5a67f9ba660.herokuapp.com/users/${this.id}`);
         this.role_id = response.data.role_id;
       } catch (error) {
         console.error("Failed to fetch user details:", error);

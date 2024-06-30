@@ -49,7 +49,7 @@ export default {
                 return;
             }
             axios
-                .post("http://localhost/cartitems/addToCart", {
+                .post("https://webdev2-a5a67f9ba660.herokuapp.com/cartitems/addToCart", {
                     cart_id: 1,
                     product_id: productId,
                     quantity: quantity,

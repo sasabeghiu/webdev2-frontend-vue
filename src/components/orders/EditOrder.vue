@@ -51,7 +51,7 @@ export default {
     methods: {
         updateOrder() {
             axios
-                .put("http://localhost/orders/" + this.order.id, this.order)
+                .put("https://webdev2-a5a67f9ba660.herokuapp.com/orders/" + this.order.id, this.order)
                 .then((res) => {
                     console.log(res.data);
                     this.$refs.form.reset();
@@ -62,7 +62,7 @@ export default {
     },
     mounted() {
         axios
-            .get("http://localhost/orders/" + this.id)
+            .get("https://webdev2-a5a67f9ba660.herokuapp.com/orders/" + this.id)
             .then((result) => {
                 this.order = result.data;
             })

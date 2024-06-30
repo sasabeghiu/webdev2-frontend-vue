@@ -2,7 +2,7 @@ import axios from "axios";
 import { useAuthStore } from "./auth-store";
 
 const instance = axios.create({
-  baseURL: "http://localhost/",
+  baseURL: "https://webdev2-a5a67f9ba660.herokuapp.com/",
 });
 
 instance.interceptors.request.use(

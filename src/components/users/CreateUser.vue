@@ -60,7 +60,7 @@ export default {
     },
     methods: {
         addUser() {
-            axios.post(`http://localhost/users/register`, this.user)
+            axios.post(`https://webdev2-a5a67f9ba660.herokuapp.com/users/register`, this.user)
                 .then((res) => {
                     console.log(res.data);
                     this.$refs.form.reset();
@@ -71,7 +71,7 @@ export default {
     },
     mounted() {
         axios
-            .get('http://localhost/roles')
+            .get('https://webdev2-a5a67f9ba660.herokuapp.com/roles')
             .then((result) => {
                 this.roles = result.data;
             })

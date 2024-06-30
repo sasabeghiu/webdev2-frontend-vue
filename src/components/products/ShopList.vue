@@ -58,7 +58,7 @@ export default {
     },
     methods: {
         fetchCategories() {
-            axios.get('http://localhost/categories')
+            axios.get('https://webdev2-a5a67f9ba660.herokuapp.com/categories')
                 .then(response => {
                     this.categories = response.data;
                 })
@@ -78,7 +78,7 @@ export default {
             params.append('offset', 0);
             params.append('limit', 10);
             axios
-                .get(`http://localhost/products?${params.toString()}`)
+                .get(`https://webdev2-a5a67f9ba660.herokuapp.com/products?${params.toString()}`)
                 .then((result) => {
                     this.products = result.data;
                     if (this.products.length === 0) {

@@ -32,7 +32,7 @@ export default {
     methods: {
         update() {
             axios
-                .get("http://localhost/roles")
+                .get("https://webdev2-a5a67f9ba660.herokuapp.com/roles")
                 .then((result) => {
                     this.roles = result.data;
                 })

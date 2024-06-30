@@ -27,7 +27,7 @@ export default {
     methods: {
         deleteUser(id) {
             axios
-                .delete("http://localhost/users/" + id)
+                .delete("https://webdev2-a5a67f9ba660.herokuapp.com/users/" + id)
                 .then((result) => {
                     console.log(result);
                     this.$emit('update')

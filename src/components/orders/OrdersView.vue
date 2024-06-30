@@ -55,7 +55,7 @@ export default {
             const userId = localStorage.getItem('id');
             if (userId) {
                 try {
-                    const response = await axios.get(`http://localhost/orders/user/${userId}`);
+                    const response = await axios.get(`https://webdev2-a5a67f9ba660.herokuapp.com/orders/user/${userId}`);
                     const orders = response.data;
                     await this.populateProductDetails(orders);
                     this.orders = orders;
@@ -70,7 +70,7 @@ export default {
             const userId = localStorage.getItem('id');
             if (userId) {
                 try {
-                    const response = await axios.get(`http://localhost/shippinginfo/user/${userId}`);
+                    const response = await axios.get(`https://webdev2-a5a67f9ba660.herokuapp.com/shippinginfo/user/${userId}`);
                     const info = response.data;
                     this.info = info;
                 } catch (error) {
@@ -84,7 +84,7 @@ export default {
             for (const order of orders) {
                 for (const item of order.items) {
                     try {
-                        const productResponse = await axios.get(`http://localhost/products/${item.product_id}`);
+                        const productResponse = await axios.get(`https://webdev2-a5a67f9ba660.herokuapp.com/products/${item.product_id}`);
                         item.product = productResponse.data;
                     } catch (error) {
                         console.error(`Error fetching product details for product ID ${item.product_id}:`, error);
