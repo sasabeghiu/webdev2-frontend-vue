@@ -47,7 +47,7 @@
             <li><router-link to="/myprofile" class="dropdown-item"><i class="bi bi-person-square"></i> My
                 Profile</router-link></li>
             <li><router-link to="/shoppingcart" class="dropdown-item"><i class="bi bi-cart-check"></i> Shopping Cart
-                <span class="badge bg-secondary">{{ cartItemCount }}</span></router-link></li>
+                <span class="badge bg-secondary">{{ cartItemCount.replace(/[^0-9]/g, ''); }}</span></router-link></li>
             <li><router-link to="/orders/myorders/" class="dropdown-item"><i class="bi bi-basket-fill"></i> My
                 Orders</router-link></li>
             <li>
