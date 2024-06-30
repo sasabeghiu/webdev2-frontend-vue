@@ -1,7 +1,10 @@
 # Web Develeopment 2 Front End
-The project is not yet fully completed.
+This repository serves as a frontend in Vue for the Web Development 2 assignment.
 
-## Project Setup
+## Hosted Project URL
+https://innova-security.netlify.app/
+
+## Local Usage
 
 ```sh
 npm install
