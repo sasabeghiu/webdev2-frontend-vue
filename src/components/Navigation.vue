@@ -89,7 +89,7 @@ export default {
     },
     cartItemCount() {
       const cartStore = useCartStore();
-      return cartStore.itemCount;
+      return cartStore.itemCount.itemCount;
     }
   },
   methods: {
